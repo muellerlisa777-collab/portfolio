@@ -144,10 +144,7 @@
     .featured .section-note { max-width: 320px; }
     .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .featured-visual { aspect-ratio: 1; border-radius: 16px; background: var(--cp-accent-soft); color: var(--cp-accent); display: grid; place-items: center; }
-    a.featured-visual { position: relative; }
-    a.featured-visual:hover { color: var(--cp-accent-hover); }
     .featured-visual svg { width: 60%; height: 60%; }
-    .featured-play-label { position: absolute; bottom: 20px; font-size: 11px; }
     .featured-item:nth-child(2) .featured-visual { background: var(--cp-surface); border: 1px solid var(--cp-border); }
     .featured-item:nth-child(3) .featured-visual { background: var(--cp-text); color: var(--cp-bg); }
     .featured-item h4 { font-size: 16px; font-weight: 500; margin: 20px 0 0; }
@@ -339,20 +336,20 @@
           </div>
           <div class="featured-grid">
             <article class="featured-item">
-              <a class="featured-visual" href="assets/customer-context-sales-modernization.mp4" target="_blank" rel="noopener" aria-label="Watch Customer Context: Sales Modernization video">
-                <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle cx="100" cy="100" r="44" stroke="currentColor" stroke-width="2"/><path d="m88 74 40 26-40 26V74Z" fill="currentColor"/></svg>
-                <span class="featured-play-label">Watch video</span>
-              </a>
+              <div class="featured-visual" aria-hidden="true">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1"><circle cx="100" cy="100" r="65"/><ellipse cx="100" cy="100" rx="65" ry="30" transform="rotate(45 100 100)"/><ellipse cx="100" cy="100" rx="65" ry="30" transform="rotate(-45 100 100)"/></svg>
+              </div>
               <h4>Customer Context: Sales Modernization</h4>
               <p>A short look at the customer context shaping the sales modernization work.</p>
+              <a class="project-read" href="assets/customer-context-sales-modernization.mp4" target="_blank" rel="noopener">Play video &#8599;</a>
             </article>
             <article class="featured-item">
-              <a class="featured-visual" href="assets/headless-crm.mp4" target="_blank" rel="noopener" aria-label="Watch Headless CRM video">
-                <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle cx="100" cy="100" r="44" stroke="currentColor" stroke-width="2"/><path d="m88 74 40 26-40 26V74Z" fill="currentColor"/></svg>
-                <span class="featured-play-label">Watch video</span>
-              </a>
+              <div class="featured-visual" aria-hidden="true">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1"><rect x="38" y="38" width="124" height="124" rx="12"/><rect x="57" y="57" width="86" height="86" rx="12" transform="rotate(45 100 100)"/><circle cx="100" cy="100" r="24"/></svg>
+              </div>
               <h4>Headless CRM</h4>
               <p>An introduction to a headless CRM approach for connecting sales capabilities across experiences.</p>
+              <a class="project-read" href="assets/headless-crm.mp4" target="_blank" rel="noopener">Play video &#8599;</a>
             </article>
             <article class="featured-item">
               <div class="featured-visual" aria-hidden="true">
