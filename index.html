@@ -164,6 +164,15 @@
     footer a:hover { color: var(--cp-accent); }
     dialog { width: min(920px, calc(100% - 32px)); max-height: calc(100vh - 64px); padding: 40px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-bg); color: var(--cp-text); overscroll-behavior: contain; }
     dialog::backdrop { background: var(--cp-overlay); }
+    .access-dialog { width: min(460px, calc(100% - 32px)); }
+    .access-dialog h2 { margin: 0 0 16px; font-size: 30px; }
+    .access-dialog form { display: grid; gap: 12px; }
+    .access-dialog label { font-size: 13px; }
+    .access-dialog input { width: 100%; padding: 12px; border: 1px solid var(--cp-border-strong); border-radius: 8px; background: var(--cp-surface); color: var(--cp-text); }
+    .access-note { font-size: 12px !important; }
+    .access-error { margin: 0; color: var(--cp-danger) !important; font-size: 13px !important; }
+    .access-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+    .access-actions .close { float: none; }
     dialog p { color: var(--cp-text-muted); line-height: 1.8; font-size: 15px; }
     dialog h3 { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 28px; }
     .close { float: right; border: 1px solid var(--cp-border); border-radius: 10px; background: var(--cp-surface); padding: 8px 14px; font-size: 12px; }
@@ -368,6 +377,19 @@
     </main>
     <footer><span>&copy; <span id="year"></span> Lisa Mueller</span><span>Design &amp; AI Strategist</span><a href="#top">Back to top &#8593;</a></footer>
   </div>
+  <dialog id="case-access" class="access-dialog" aria-labelledby="access-title">
+    <h2 id="access-title">Case study access</h2>
+    <p class="access-note">Enter the password to continue. This is only a convenience prompt: the case study content remains publicly accessible in this site's files.</p>
+    <form id="case-access-form">
+      <label for="case-access-password">Password</label>
+      <input id="case-access-password" name="password" type="password" autocomplete="off" required aria-describedby="access-error">
+      <p class="access-error" id="access-error" role="alert" hidden>That password isn't correct. Please try again.</p>
+      <div class="access-actions">
+        <button class="close" id="case-access-cancel" type="button">Cancel</button>
+        <button class="close" type="submit">Continue</button>
+      </div>
+    </form>
+  </dialog>
   <dialog aria-labelledby="project-title">
     <button class="close" type="button">Close &#215;</button>
     <div class="case-heading"><div class="eyebrow" id="project-category"></div><h2 id="project-title"></h2></div>
@@ -507,8 +529,40 @@
       if (className) element.className = className;
       return element;
     }
+    const accessDialog = document.getElementById("case-access");
+    const accessForm = document.getElementById("case-access-form");
+    const accessInput = document.getElementById("case-access-password");
+    const accessError = document.getElementById("access-error");
+    let caseStudiesUnlocked = false;
+    let pendingCaseStudyButton = null;
+    accessForm.addEventListener("submit", event => {
+      event.preventDefault();
+      if (accessInput.value !== "orange") {
+        accessError.hidden = false;
+        accessInput.focus();
+        return;
+      }
+      caseStudiesUnlocked = true;
+      accessError.hidden = true;
+      accessDialog.close();
+      const button = pendingCaseStudyButton;
+      pendingCaseStudyButton = null;
+      if (button) button.click();
+    });
+    document.getElementById("case-access-cancel").addEventListener("click", () => {
+      pendingCaseStudyButton = null;
+      accessDialog.close();
+    });
     document.querySelectorAll("[data-case-study]").forEach(button => {
       button.addEventListener("click", () => {
+        if (!caseStudiesUnlocked) {
+          pendingCaseStudyButton = button;
+          accessError.hidden = true;
+          accessInput.value = "";
+          accessDialog.showModal();
+          accessInput.focus();
+          return;
+        }
         const project = caseStudies[Number(button.dataset.caseStudy)];
         document.getElementById("project-category").textContent = project.category;
         document.getElementById("project-title").textContent = project.title;
