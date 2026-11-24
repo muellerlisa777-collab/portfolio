@@ -118,6 +118,7 @@
     .bloom circle { fill: none; stroke: currentColor; stroke-width: .8; }
     .art-title { position: absolute; left: 28px; bottom: 24px; font-size: 34px; font-weight: 300; letter-spacing: -.045em; }
     .mini-window { border: 1px solid var(--cp-border); border-radius: 10px; padding: 20px; margin-top: 28px; background: var(--cp-bg-elevated); }
+    .project:nth-child(2) .mini-window { margin-top: 0; }
     .window-top { display: flex; align-items: center; justify-content: space-between; font-size: 9px; color: var(--cp-text-muted); padding-bottom: 16px; border-bottom: 1px solid var(--cp-border); }
     .spark { color: var(--cp-accent); font-size: 22px; }
     .mini-window h3 { font-size: 22px; font-weight: 400; line-height: 1.25; margin: 20px 0; }
@@ -127,8 +128,8 @@
     .orbit { position: absolute; width: 76%; height: 76%; left: 12%; top: 8%; color: var(--cp-bg); }
     .project-info { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
     .project-info h3 { font-weight: 500; font-size: 16px; margin: 0 0 6px; }
-    .project-info p { font-size: 11px; color: var(--cp-text-muted); margin: 0; }
-    .project-info h3 { line-height: 1.45; }
+    .project-info p { font-size: 11px; color: var(--cp-text-muted); margin: 0; min-height: 2.6em; }
+    .project-info h3 { line-height: 1.45; min-height: 2.9em; }
     .project-info { gap: 16px; align-items: start; }
     .project-description { font-size: 13px; line-height: 1.8; color: var(--cp-text-muted); margin: 16px 0 0; }
     .project-read { display: inline-block; margin-top: 16px; color: var(--cp-accent); font-size: 12px; }
@@ -225,6 +226,7 @@
       .project-art { aspect-ratio: 1.15 / 1; padding: 28px; }
       .art-title { font-size: 34px; left: 28px; }
       .mini-window { padding: 20px; max-width: 260px; margin: 24px auto; }
+      .project:nth-child(2) .mini-window { margin: 0 auto; }
       .mini-window h3 { font-size: 24px; margin: 20px 0; }
       #about { grid-template-columns: 1fr; gap: 16px; }
       .about-body { font-size: 20px; }
