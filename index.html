@@ -138,6 +138,16 @@
     .project-pending:hover .project-art { transform: none; }
     .pending-label { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--cp-text-soft); }
     .arrow { font-size: 22px; color: var(--cp-accent); }
+    .featured { margin-top: 96px; padding-top: 64px; border-top: 1px solid var(--cp-border); }
+    .featured-heading { font-size: clamp(30px, 3vw, 42px); font-weight: 350; letter-spacing: -.05em; margin: 12px 0 0; }
+    .featured .section-note { max-width: 320px; }
+    .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .featured-visual { aspect-ratio: 1; border-radius: 16px; background: var(--cp-accent-soft); color: var(--cp-accent); display: grid; place-items: center; }
+    .featured-visual svg { width: 60%; height: 60%; }
+    .featured-item:nth-child(2) .featured-visual { background: var(--cp-surface); border: 1px solid var(--cp-border); }
+    .featured-item:nth-child(3) .featured-visual { background: var(--cp-text); color: var(--cp-bg); }
+    .featured-item h4 { font-size: 16px; font-weight: 500; margin: 20px 0 0; }
+    .featured-item p { font-size: 13px; line-height: 1.8; color: var(--cp-text-muted); margin: 12px 0 0; }
     #about { border-top: 1px solid var(--cp-border); display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
     .about-body { font-size: 22px; line-height: 1.7; font-weight: 350; letter-spacing: -.02em; margin-top: 24px; }
     .about-body p { margin: 0 0 24px; }
@@ -202,6 +212,8 @@
       .section-head { display: block; }
       .section-note { max-width: none; margin-top: 16px; }
       .projects { grid-template-columns: 1fr; gap: 36px; }
+      .featured { margin-top: 64px; padding-top: 48px; }
+      .featured-grid { grid-template-columns: 1fr; gap: 36px; }
       .project-art { aspect-ratio: 1.15 / 1; padding: 28px; }
       .art-title { font-size: 34px; left: 28px; }
       .mini-window { padding: 20px; max-width: 260px; margin: 24px auto; }
@@ -273,7 +285,7 @@
       <section id="work" aria-labelledby="work-title">
         <div class="section-head">
           <div><div class="eyebrow">01 / Selected work</div><h2 id="work-title">Leadership, in practice.</h2></div>
-          <p class="section-note">Building teams. Shaping AI strategy.<br>Leading through change.</p>
+          <p class="section-note">Explore the case studies behind the strategy, then see featured work bring ideas to life.</p>
         </div>
         <div class="projects">
           <button class="project" type="button" data-case-study="0" aria-label="Read case study: Building an Industry Design Organization for the AI Era">
@@ -306,6 +318,38 @@
             <p class="project-description">Reserved for the sales modernization story. Details will be added from a public-safe version of the case study.</p>
             <span class="pending-label">Coming soon</span>
           </article>
+        </div>
+        <div class="featured" aria-labelledby="featured-title">
+          <div class="section-head">
+            <div><div class="eyebrow">A closer look</div><h3 class="featured-heading" id="featured-title">Featured work.</h3></div>
+            <p class="section-note">Alongside these stories of leadership and strategy, a closer look at the work itself.</p>
+          </div>
+          <div class="featured-grid">
+            <article class="featured-item">
+              <div class="featured-visual" aria-hidden="true">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1"><circle cx="100" cy="100" r="65"/><ellipse cx="100" cy="100" rx="65" ry="30" transform="rotate(45 100 100)"/><ellipse cx="100" cy="100" rx="65" ry="30" transform="rotate(-45 100 100)"/></svg>
+              </div>
+              <h4>Featured work 01</h4>
+              <p>Project title and description coming soon.</p>
+              <span class="pending-label">Video link coming soon</span>
+            </article>
+            <article class="featured-item">
+              <div class="featured-visual" aria-hidden="true">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1"><rect x="38" y="38" width="124" height="124" rx="12"/><rect x="57" y="57" width="86" height="86" rx="12" transform="rotate(45 100 100)"/><circle cx="100" cy="100" r="24"/></svg>
+              </div>
+              <h4>Featured work 02</h4>
+              <p>Project title and description coming soon.</p>
+              <span class="pending-label">Video link coming soon</span>
+            </article>
+            <article class="featured-item">
+              <div class="featured-visual" aria-hidden="true">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1"><circle cx="75" cy="100" r="52"/><circle cx="125" cy="100" r="52"/><path d="M25 100h150M100 48v104"/></svg>
+              </div>
+              <h4>Featured work 03</h4>
+              <p>Project title and description coming soon.</p>
+              <span class="pending-label">Video link coming soon</span>
+            </article>
+          </div>
         </div>
       </section>
       <section id="about" aria-labelledby="about-title">
