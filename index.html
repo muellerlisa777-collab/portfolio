@@ -168,6 +168,9 @@
     .case-section { padding: 24px 0 0; border-top: 1px solid var(--cp-border); margin-top: 24px; }
     .case-section h3 { margin: 0 0 16px; }
     .case-video { display: block; width: 100%; max-height: 70vh; margin: 0 0 20px; border-radius: 10px; background: var(--cp-surface); }
+    .case-figure { margin: 24px 0; }
+    .case-figure img { display: block; width: 100%; height: auto; border-radius: 10px; }
+    .case-figure figcaption { margin-top: 8px; color: var(--cp-text-muted); font-size: 12px; line-height: 1.6; }
     .case-section ul { padding-left: 20px; color: var(--cp-text-muted); font-size: 14px; line-height: 1.8; }
     .case-section li { margin-bottom: 12px; }
     .case-source { font-size: 10px; color: var(--cp-text-soft); margin-top: 32px; line-height: 1.7; }
@@ -437,7 +440,10 @@
           { value: "2023", label: "Healthcare work moved to a newly formed large Health and Life Sciences organization within Microsoft" }
         ],
         sections: [
-          { title: "My role and the operating reality", paragraphs: ["I led the design organization and influenced product management and engineering through research, workflow framing, quality standards, and delivery tradeoffs.", "For the 2020 healthcare cloud launch, I directed UX across care management, care-team productivity, patient engagement, and FHIR-based clinical data experiences. Vaccination management extended the service across consumer registration, appointment booking, provider portals, vaccination sites, call-center support, confirmations, and reminders. My priority was keeping these connected journeys visible rather than treating features as isolated enterprise forms."] },
+          { title: "My role and the operating reality", paragraphs: ["I led the design organization and influenced product management and engineering through research, workflow framing, quality standards, and delivery tradeoffs.", "For the 2020 healthcare cloud launch, I directed UX across care management, care-team productivity, patient engagement, and FHIR-based clinical data experiences. Vaccination management extended the service across consumer registration, appointment booking, provider portals, vaccination sites, call-center support, confirmations, and reminders. My priority was keeping these connected journeys visible rather than treating features as isolated enterprise forms."], images: [
+            { src: "assets/care-management.png", alt: "Care management interface showing a fictional patient's care summary, clinical details, and interactions.", caption: "Care management: bringing patient information and care coordination into one view. Fictional patient data shown." },
+            { src: "assets/patient-outreach.png", alt: "Patient outreach interface showing an enrollment journey with messages, a wait, and a follow-up branch.", caption: "Patient outreach: designing connected journeys for communication and follow-up." }
+          ] },
           { title: "Repairing the whole service, not just the screen", paragraphs: ["During the 2021 Washington, DC vaccine rollout, a first-come, first-served opening produced failed requests under peak demand. Working with the District and Microsoft Consulting Services, the team separated registration from appointment booking, introduced pre-registration, shortened forms, and replaced opaque errors with understandable recovery messages.", "Portal usability evaluations and vaccination-clinic visits informed the response. The product decision was to reduce demand pressure and uncertainty across the journey, not simply polish the failing booking screen. The work also informed deployment and configuration guidance for later jurisdictional launches, including King County and Prince George's County."] },
           { title: "A responsible transition", paragraphs: ["In December 2023, I worked with design and product partners to move healthcare work to a newly formed large Health and Life Sciences organization within Microsoft. We shared essential design and research context to support continuity and raised capacity risks for the receiving team.", "The work was later discontinued. The record does not establish a single cause, so I avoid attributing that outcome to one decision or team."] },
           { title: "Impact and limitations", items: [
@@ -560,6 +566,16 @@
             videoObserver.observe(video);
           }
           for (const paragraph of section.paragraphs || []) block.append(textElement("p", paragraph));
+          for (const image of section.images || []) {
+            const figure = document.createElement("figure");
+            figure.className = "case-figure";
+            const img = document.createElement("img");
+            img.src = image.src;
+            img.alt = image.alt;
+            img.loading = "lazy";
+            figure.append(img, textElement("figcaption", image.caption));
+            block.append(figure);
+          }
           if (section.items) {
             const list = document.createElement("ul");
             for (const item of section.items) list.append(textElement("li", item));
