@@ -117,14 +117,7 @@
     .bloom { position: absolute; width: 78%; height: 70%; top: 12%; left: 11%; }
     .bloom circle { fill: none; stroke: currentColor; stroke-width: .8; }
     .art-title { position: absolute; left: 28px; bottom: 24px; font-size: 34px; font-weight: 300; letter-spacing: -.045em; }
-    .mini-window { border: 1px solid var(--cp-border); border-radius: 10px; padding: 20px; margin-top: 28px; background: var(--cp-bg-elevated); }
-    .project:nth-child(2) .mini-window { margin-top: 0; }
-    .window-top { display: flex; align-items: center; justify-content: space-between; font-size: 9px; color: var(--cp-text-muted); padding-bottom: 16px; border-bottom: 1px solid var(--cp-border); }
-    .spark { color: var(--cp-accent); font-size: 22px; }
-    .mini-window h3 { font-size: 22px; font-weight: 400; line-height: 1.25; margin: 20px 0; }
-    .mini-line { height: 5px; margin: 10px 0; background: var(--cp-border); border-radius: 10px; }
-    .mini-line.short { width: 65%; }
-    .mini-pill { display: inline-block; padding: 8px 12px; background: var(--cp-accent-soft); color: var(--cp-accent); border-radius: 10px; font-size: 9px; margin-top: 16px; }
+    .care-art { position: absolute; width: 76%; height: 72%; left: 12%; top: 7%; color: var(--cp-accent); }
     .orbit { position: absolute; width: 76%; height: 76%; left: 12%; top: 8%; color: var(--cp-bg); }
     .project-info { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
     .project-info h3 { font-weight: 500; font-size: 16px; margin: 0 0 6px; }
@@ -187,9 +180,6 @@
       .projects { gap: 16px; }
       .project-art { padding: 20px; }
       .art-title { left: 20px; font-size: 26px; }
-      .mini-window { padding: 12px; margin-top: 20px; }
-      .mini-window h3 { font-size: 16px; margin: 12px 0; }
-      .mini-line { margin: 7px 0; }
       #about { gap: 40px; }
       nav { gap: 24px; }
     }
@@ -216,9 +206,6 @@
       .featured-grid { grid-template-columns: 1fr; gap: 36px; }
       .project-art { aspect-ratio: 1.15 / 1; padding: 28px; }
       .art-title { font-size: 34px; left: 28px; }
-      .mini-window { padding: 20px; max-width: 260px; margin: 24px auto; }
-      .project:nth-child(2) .mini-window { margin: 0 auto; }
-      .mini-window h3 { font-size: 24px; margin: 20px 0; }
       #about { grid-template-columns: 1fr; gap: 16px; }
       .about-body { font-size: 20px; }
       .principle { padding: 48px 4%; }
@@ -302,7 +289,21 @@
           <button class="project" type="button" data-case-study="1" aria-label="Read case study: Healthcare Product Leadership">
             <div class="project-art">
               <span class="project-tag">Healthcare product leadership / 2020&ndash;2024</span>
-              <div class="mini-window" aria-hidden="true"><div class="window-top"><span>THE WHOLE CARE JOURNEY</span><span class="spark">+</span></div><h3>Care with<br>clarity.</h3><div class="mini-line"></div><div class="mini-line short"></div><span class="mini-pill">People first, under pressure.</span></div>
+              <svg class="care-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+                <g stroke="currentColor" stroke-width=".8">
+                  <circle cx="120" cy="120" r="82"/>
+                  <circle cx="120" cy="120" r="56"/>
+                  <circle cx="120" cy="120" r="28"/>
+                  <path d="M120 38v164M38 120h164M62 62l116 116M62 178 178 62"/>
+                </g>
+                <g fill="currentColor">
+                  <circle cx="120" cy="38" r="5"/>
+                  <circle cx="202" cy="120" r="5"/>
+                  <circle cx="120" cy="202" r="5"/>
+                  <circle cx="38" cy="120" r="5"/>
+                  <circle cx="120" cy="120" r="7"/>
+                </g>
+              </svg>
               <span class="art-title">When clarity matters.</span>
             </div>
             <div class="project-info"><div><h3>Leading Healthcare Through Delivery, Failure &amp; Transition</h3><p>Microsoft Cloud for Healthcare &middot; Product strategy</p></div></div>
