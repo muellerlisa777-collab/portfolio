@@ -167,6 +167,7 @@
     .case-metric span { display: block; font-size: 11px; line-height: 1.6; color: var(--cp-text-muted); margin-top: 8px; }
     .case-section { padding: 24px 0 0; border-top: 1px solid var(--cp-border); margin-top: 24px; }
     .case-section h3 { margin: 0 0 16px; }
+    .case-video { display: block; width: 100%; max-height: 70vh; margin: 0 0 20px; border-radius: 10px; background: var(--cp-surface); }
     .case-section ul { padding-left: 20px; color: var(--cp-text-muted); font-size: 14px; line-height: 1.8; }
     .case-section li { margin-bottom: 12px; }
     .case-source { font-size: 10px; color: var(--cp-text-soft); margin-top: 32px; line-height: 1.7; }
@@ -415,7 +416,7 @@
             "Build a repeatable AI innovation framework: identify business problems, generate use cases, prioritize opportunities, stress-test assumptions, and pilot solutions. Support it with LLM design guidance, service blueprints, value calculators, and facilitator training."
           ] },
           { title: "Adapting the strategy", paragraphs: ["As AI adoption accelerated, I directed our focus toward industry-specific data solutions. Designers across Healthcare, Retail, and Sustainability collaborated with Fabric UX and engineering across more than four time zones, balancing common experience patterns with specialized industry requirements. The work contributed to the first Cloud for Industry on Fabric private preview in October 2023."] },
-          { title: "AI quality in practice: Ask Ralph", paragraphs: ["For Ralph Lauren's AI-powered personal styling experience, Microsoft's industry design contribution covered envisioning, interaction flows, research, content direction, and evaluation. Ralph Lauren and its design partners owned much of the final website experience.", "The team completed more than 18 evaluation cycles across Microsoft and Ralph Lauren environments. Reported composite UX scores improved from approximately 46 to 63 across March\u2013May 2024 testing rounds. Findings on response clarity, length, and clarifying questions informed refinements, with evaluation evolving toward the ACRUE framework. These are reported testing outcomes, not a claim of business or revenue impact."] },
+          { title: "AI quality in practice: Ask Ralph", video: "assets/ask-ralph.mov", paragraphs: ["For Ralph Lauren's AI-powered personal styling experience, Microsoft's industry design contribution covered envisioning, interaction flows, research, content direction, and evaluation. Ralph Lauren and its design partners owned much of the final website experience.", "The team completed more than 18 evaluation cycles across Microsoft and Ralph Lauren environments. Reported composite UX scores improved from approximately 46 to 63 across March\u2013May 2024 testing rounds. Findings on response clarity, length, and clarifying questions informed refinements, with evaluation evolving toward the ACRUE framework. These are reported testing outcomes, not a claim of business or revenue impact."] },
           { title: "Documented impact", items: [
             "Scaled a global studio from 7 to 50 multidisciplinary designers and researchers, with design managers in four countries.",
             "Research informed Sovereignty roadmap prioritization and resource allocation for October 2023 and April 2024.",
@@ -502,6 +503,22 @@
       }
     ];
     const dialog = document.querySelector("dialog");
+    const videoObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        const video = entry.target;
+        if (entry.isIntersecting && dialog.open) {
+          video.play().catch(() => {
+            document.getElementById("case-video-status").textContent = "Automatic playback was unavailable. Use the video controls to play.";
+          });
+        } else {
+          video.pause();
+        }
+      }
+    }, { root: dialog, threshold: 0.5 });
+    dialog.addEventListener("close", () => {
+      videoObserver.disconnect();
+      dialog.querySelectorAll("video").forEach(video => video.pause());
+    });
     function textElement(tag, text, className) {
       const element = document.createElement(tag);
       element.textContent = text;
@@ -526,6 +543,24 @@
           const block = document.createElement("section");
           block.className = "case-section";
           block.append(textElement("h3", section.title));
+          if (section.video) {
+            const video = document.createElement("video");
+            video.className = "case-video";
+            video.src = section.video;
+            video.controls = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.preload = "metadata";
+            video.setAttribute("aria-label", section.title + " video");
+            const status = textElement("p", "", "case-video-status");
+            status.id = "case-video-status";
+            status.setAttribute("role", "status");
+            video.addEventListener("error", () => {
+              status.textContent = "The video could not be loaded or played in this browser.";
+            });
+            block.append(video, status);
+            videoObserver.observe(video);
+          }
           for (const paragraph of section.paragraphs || []) block.append(textElement("p", paragraph));
           if (section.items) {
             const list = document.createElement("ul");
